@@ -27,8 +27,6 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-
-
 function getRandomHexColor() {
     let randomColor = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0').toUpperCase();
     return randomColor;
@@ -117,5 +115,14 @@ function isLightColor(hex){
 }
 
 function copyToClipboard() {
-    
+    let text = this.innerText;
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() {
+            
+        }).catch(function(err) {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
 }
