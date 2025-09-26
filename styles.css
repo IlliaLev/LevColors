@@ -1,0 +1,26 @@
+body {
+    background-color: #E8D9DB;
+    color: #ffffff;
+}
+
+h1 {
+    text-align: center;
+    font-size: 26px;
+    color: #1A1C23;
+    font-weight: bold;
+}
+
+.container {
+    width: 90%;
+    height: 400px;
+    background-color: white;
+    margin: 20px auto 0 auto;
+    padding: 15px;
+    display: flex;
+    justify-content: left;
+}
+
+.color {
+    width: 20%;
+    height: inherit;
+}
