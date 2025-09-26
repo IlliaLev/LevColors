@@ -1,6 +1,7 @@
 body {
     background-color: #E8D9DB;
     color: #ffffff;
+    font-family: sans-serif
 }
 
 h1 {
@@ -24,3 +25,13 @@ h1 {
     width: 20%;
     height: inherit;
 }
+
+.color > button {
+    background-color: transparent;
+    margin: 140% 50px 0 50px;
+    border-radius: 10px;
+    font-size: 2em;
+    border: none;
+    outline: none;
+}
+
