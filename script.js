@@ -10,14 +10,29 @@ let colorText3 = document.querySelector("#cthreeText");
 let colorText4 = document.querySelector("#cfourText");
 let colorText5 = document.querySelector("#cfiveText");
 
+let rgbText1 = document.querySelector("#rgbB1");
+let rgbText2 = document.querySelector("#rgbB2");
+let rgbText3 = document.querySelector("#rgbB3");
+let rgbText4 = document.querySelector("#rgbB4");
+let rgbText5 = document.querySelector("#rgbB5");
+
+let switchIsolation = document.querySelector("#switchIsolation");
+
 let array = [colorDiv1, colorDiv2, colorDiv3, colorDiv4, colorDiv5];
 let colorCodes = [colorText1,colorText2,colorText3,colorText4,colorText5];
+let rgbCodes = [rgbText1, rgbText2, rgbText3, rgbText4, rgbText5];
 
 colorText1.onclick = copyToClipboard;
 colorText2.onclick = copyToClipboard;
 colorText3.onclick = copyToClipboard;
 colorText4.onclick = copyToClipboard;
 colorText5.onclick = copyToClipboard;
+
+rgbText1.onclick = copyToClipboard;
+rgbText2.onclick = copyToClipboard;
+rgbText3.onclick = copyToClipboard;
+rgbText4.onclick = copyToClipboard;
+rgbText5.onclick = copyToClipboard;
 
 setAllRandomColors();
 
@@ -26,6 +41,15 @@ document.addEventListener("keydown", function(event) {
         setAllRandomColors();
     }
 });
+
+switchIsolation.addEventListener('change', function() {
+    if(switchIsolation.checked){
+        setBorders();
+    } else {
+        unsetBorders();
+    }
+});
+
 
 function getRandomHexColor() {
     let randomColor = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0').toUpperCase();
@@ -42,14 +66,20 @@ function setAllRandomColors(){
         let isLight = isLightColor(color); 
         setColor(array[i], color);
         colorCodes[i].innerText = color;
+        let rgb = getRgb(color);
+        rgbCodes[i].innerText = rgb[0] + ", " + rgb[1] + ", " + rgb[2];
 
         colorCodes[i].setAttribute("data-original-color", color);
         colorCodes[i].setAttribute("data-is-light", isLight);
 
         if(isLight){
             colorCodes[i].style.color = "white";
+            let lRgb = lightenRgb(rgb, 0.5);
+            rgbCodes[i].style.color = "rgb(" + lRgb[0] + ", " + lRgb[1] + ", " + lRgb[2] + ")";
         } else {
             colorCodes[i].style.color = "black";
+            let dRgb = darkenRgb(rgb, 0.5);
+            rgbCodes[i].style.color = "rgb(" + dRgb[0] + ", " + dRgb[1] + ", " + dRgb[2] + ")";
         }
 
         colorCodes[i].onmouseenter = null;
@@ -125,4 +155,22 @@ function copyToClipboard() {
         });
     }
 
+}
+
+function setBorders() {
+    for(let i = 0; i < array.length - 1; i++){
+        array[i].style["border-right"] = "5px solid white";
+    }
+    for(let i = 1; i < array.length; i++){
+        array[i].style["border-left"] = "5px solid white";
+    }
+}
+
+function unsetBorders() {
+    for(let i = 0; i < array.length - 1; i++){
+        array[i].style["border-right"] = "none";
+    }
+    for(let i = 1; i < array.length; i++){
+        array[i].style["border-left"] = "none";
+    }
 }

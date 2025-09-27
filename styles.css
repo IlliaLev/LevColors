@@ -11,11 +11,24 @@ h1 {
     font-weight: bold;
 }
 
+.tools {
+    width: 90%;
+    height: 50px;
+    margin: 20px auto 0 auto;
+    padding: 0 15px;
+    background-color: white;
+    color: #1A1C23;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .container {
     width: 90%;
-    height: 400px;
+    height: 420px;
     background-color: white;
-    margin: 20px auto 0 auto;
+    margin: 0 auto 0 auto;
     padding: 15px;
     display: flex;
     justify-content: left;
@@ -24,14 +37,78 @@ h1 {
 .color {
     width: 20%;
     height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    
 }
 
-.color > button {
+
+.hexButton {
     background-color: transparent;
-    margin: 140% 50px 0 50px;
     border-radius: 10px;
     font-size: 2em;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
+.rgbButton {
+    width: 60%;
+    background-color: transparent;
+    font-size: 1em;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.tools > label {
+    font-weight: 600;
+}
+
+.cs-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.cs-checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: sans-serif;
+}
+
+.cs-checkbox .checkmark {
+    width: 15px;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 4px;
+    margin-right: 8px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.cs-checkbox .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 1px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+
+
+.cs-checkbox input:checked + .checkmark {
+    background-color: #7B1EC9; 
+}
+
+.cs-checkbox input:checked + .checkmark::after {
+    display: block;
+}
